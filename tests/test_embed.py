@@ -47,3 +47,22 @@ def test_index_work_writes_fts_and_vectors_and_is_repeatable():
     assert conn.execute("SELECT count(*) FROM vec_passage_thesis").fetchone()[0] == 1
     hit = conn.execute("SELECT rowid FROM passage_fts WHERE passage_fts MATCH 'euphemisms'").fetchall()
     assert len(hit) == 2  # bit title is indexed on every passage
+
+
+def test_sentence_transformer_embedder_rejects_a_wrong_dim(monkeypatch):
+    import sys
+    import types
+
+    from carlinpedia.ingest.embed import SentenceTransformerEmbedder
+
+    class FakeModel:
+        def __init__(self, name):
+            self.name = name
+
+        def get_embedding_dimension(self):
+            return 384
+
+    monkeypatch.setitem(sys.modules, "sentence_transformers", types.SimpleNamespace(SentenceTransformer=FakeModel))
+    with pytest.raises(EmbeddingMismatch, match="384.*768"):
+        SentenceTransformerEmbedder("small-model", 768)
+    assert SentenceTransformerEmbedder("small-model", 384).dim == 384

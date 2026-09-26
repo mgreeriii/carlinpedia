@@ -85,7 +85,7 @@ requires-dist = [
     { name = "mcp", specifier = ">=2.2,<3" },
     { name = "pydantic", specifier = ">=2.13" },
     { name = "pyyaml", specifier = ">=6.0" },
-    { name = "sentence-transformers", specifier = ">=3.0" },
+    { name = "sentence-transformers", specifier = ">=6.0" },
     { name = "sqlite-vec", specifier = ">=0.1.9" },
     { name = "typer", specifier = ">=0.15" },
 ]

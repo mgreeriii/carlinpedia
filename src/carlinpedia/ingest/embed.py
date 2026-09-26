@@ -37,6 +37,12 @@ class SentenceTransformerEmbedder:
         self.name = model_name
         self.dim = dim
         self._model = SentenceTransformer(model_name)
+        actual = self._model.get_embedding_dimension()
+        if actual != dim:
+            raise EmbeddingMismatch(
+                f"{model_name} produces {actual}-dimensional vectors, but carlinpedia.toml says dim = {dim}. "
+                f"Set [embedding] dim = {actual}."
+            )
 
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
         return self._model.encode(texts, normalize_embeddings=True, batch_size=32).tolist()
