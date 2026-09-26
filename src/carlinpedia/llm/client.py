@@ -13,8 +13,9 @@ from pydantic import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
 
-# The Python SDK refuses non-streaming requests it expects to exceed ten minutes; 16k output stays under that.
-DEFAULT_MAX_TOKENS = 16000
+# Thinking tokens count against max_tokens, and a full special's segmentation is a large JSON answer on top.
+# Requests this large must stream: the SDK refuses non-streaming calls it expects to run over ten minutes.
+DEFAULT_MAX_TOKENS = 64000
 
 
 class LLMError(Exception):
@@ -38,7 +39,7 @@ class AnthropicLLM:
         self._max_tokens = max_tokens
 
     def parse(self, *, prompt_name: str, key: str, system: str, user: str, output_model: type[T]) -> T:
-        response = self._client.messages.parse(
+        with self._client.messages.stream(
             model=self.model,
             max_tokens=self._max_tokens,
             # The system prompt is identical across every call for a prompt, so cache it.
@@ -46,7 +47,8 @@ class AnthropicLLM:
             messages=[{"role": "user", "content": user}],
             thinking={"type": "adaptive"},
             output_format=output_model,
-        )
+        ) as stream:
+            response = stream.get_final_message()
         if response.stop_reason == "refusal":
             raise LLMError(f"{prompt_name} [{key}]: the model declined the request")
         if response.stop_reason == "max_tokens":

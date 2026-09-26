@@ -10,14 +10,31 @@ class Answer(BaseModel):
     value: int
 
 
+class RecordingStream:
+    def __init__(self, response):
+        self.response = response
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def get_final_message(self):
+        return self.response
+
+
 class RecordingMessages:
+    """Only streaming is offered: long thinking plus a large JSON answer needs a high max_tokens,
+    and the SDK refuses non-streaming requests that could run that long."""
+
     def __init__(self, response):
         self.response = response
         self.kwargs = None
 
-    def parse(self, **kwargs):
+    def stream(self, **kwargs):
         self.kwargs = kwargs
-        return self.response
+        return RecordingStream(self.response)
 
 
 def make_llm(stop_reason="end_turn", parsed=Answer(value=3)):
@@ -31,7 +48,7 @@ def test_anthropic_llm_builds_the_request():
     assert result == Answer(value=3)
     kw = messages.kwargs
     assert kw["model"] == "claude-sonnet-5"
-    assert kw["max_tokens"] == 16000
+    assert kw["max_tokens"] == 64000
     assert kw["system"] == [{"type": "text", "text": "SYS", "cache_control": {"type": "ephemeral"}}]
     assert kw["messages"] == [{"role": "user", "content": "USER"}]
     assert kw["thinking"] == {"type": "adaptive"}
