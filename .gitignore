@@ -1,0 +1,18 @@
+# Copyrighted source material and the derived database stay local
+corpus/
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Environment and editors
+.env
+.DS_Store
+.idea/
+.vscode/
