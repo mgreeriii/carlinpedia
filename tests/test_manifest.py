@@ -87,3 +87,14 @@ def test_read_transcript_falls_back_to_cp1252(tmp_path):
     assert read_transcript(path) == "It\u2019s \u201csoft\u201d language."
     path.write_bytes("\ufeffUTF-8 with BOM".encode("utf-8"))
     assert read_transcript(path) == "UTF-8 with BOM"
+
+
+def test_read_transcript_decodes_utf16_and_rejects_binary(tmp_path):
+    path = tmp_path / "t.txt"
+    path.write_bytes("It\u2019s soft language.".encode("utf-16"))  # Notepad "Unicode", with BOM
+    assert read_transcript(path) == "It\u2019s soft language."
+    path.write_bytes(b"\xfe\xff" + "Big endian.".encode("utf-16-be"))
+    assert read_transcript(path) == "Big endian."
+    path.write_bytes(b"\x00\x01binary\x00junk")
+    with pytest.raises(ManifestError, match="not a text transcript"):
+        read_transcript(path)

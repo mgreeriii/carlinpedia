@@ -71,12 +71,19 @@ def load_manifest(work_dir: Path) -> Manifest:
 
 
 def read_transcript(path: Path) -> str:
-    """Decode a transcript. Web transcripts are often Windows-1252, so fall back to it."""
+    """Decode a transcript. Handles UTF-8, UTF-16 with a BOM (Notepad's "Unicode"), and Windows-1252,
+    which web transcripts often use. Refuses anything with NUL bytes rather than sending garbage to Claude."""
     data = path.read_bytes()
-    try:
-        return data.decode("utf-8-sig")
-    except UnicodeDecodeError:
-        return data.decode("cp1252", errors="replace")
+    if data.startswith((b"\xff\xfe", b"\xfe\xff")):
+        text = data.decode("utf-16", errors="replace")
+    else:
+        try:
+            text = data.decode("utf-8-sig")
+        except UnicodeDecodeError:
+            text = data.decode("cp1252", errors="replace")
+    if "\x00" in text:
+        raise ManifestError(f"{path} is not a text transcript (it contains NUL bytes). Save it as UTF-8.")
+    return text
 
 
 def register_work(conn: sqlite3.Connection, corpus_dir: Path, slug: str) -> Registration:
