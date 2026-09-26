@@ -2,6 +2,9 @@
 corpus/
 data/
 
+# Implementation plans are working documents and stay local
+docs/superpowers/plans/
+
 # Python
 __pycache__/
 *.py[cod]
