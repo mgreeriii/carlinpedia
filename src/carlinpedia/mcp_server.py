@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import sqlite3
+import threading
 from pathlib import Path
 
 from mcp.server.mcpserver import MCPServer
@@ -35,6 +36,9 @@ Find what George Carlin would say about this, using the Carlinpedia tools.
 
 def build_server(conn: sqlite3.Connection, embedder: Embedder, cfg: Config) -> MCPServer:
     server = MCPServer("carlinpedia", instructions=INSTRUCTIONS)
+    # MCP runs each sync tool on a worker thread, and Claude often calls several at once.
+    # sqlite3 connections are not safe for concurrent use, so tools take turns on the one connection.
+    db_lock = threading.Lock()
 
     @server.tool()
     def search_passages(
@@ -55,8 +59,9 @@ def build_server(conn: sqlite3.Connection, embedder: Embedder, cfg: Config) -> M
             kinds=tuple(kinds or ()), favorites_only=favorites_only,
         )
         try:
-            results = search(conn, embedder, query, filters, limit, rrf_k=cfg.rrf_k, depth=cfg.retriever_depth,
-                             dedup_threshold=cfg.dedup_threshold)
+            with db_lock:
+                results = search(conn, embedder, query, filters, limit, rrf_k=cfg.rrf_k, depth=cfg.retriever_depth,
+                                 dedup_threshold=cfg.dedup_threshold)
         except (SearchError, EmbeddingMismatch) as exc:
             raise ToolError(str(exc)) from exc
         return {"count": len(results), "results": results}
@@ -66,7 +71,8 @@ def build_server(conn: sqlite3.Connection, embedder: Embedder, cfg: Config) -> M
         """One passage with its full citation, the bit summary, and up to `context` (max 5) neighboring
         passages on each side within the same bit."""
         try:
-            return library.get_passage(conn, passage_id, context)
+            with db_lock:
+                return library.get_passage(conn, passage_id, context)
         except library.NotFound as exc:
             raise ToolError(str(exc)) from exc
 
@@ -74,25 +80,29 @@ def build_server(conn: sqlite3.Connection, embedder: Embedder, cfg: Config) -> M
     def get_bit(bit_id: int) -> dict:
         """A whole bit (routine), passage by passage."""
         try:
-            return library.get_bit(conn, bit_id)
+            with db_lock:
+                return library.get_bit(conn, bit_id)
         except library.NotFound as exc:
             raise ToolError(str(exc)) from exc
 
     @server.tool()
     def list_works() -> dict:
         """Every work in the library with its kind, year, and bit and passage counts."""
-        return {"works": library.list_works(conn)}
+        with db_lock:
+            return {"works": library.list_works(conn)}
 
     @server.tool()
     def list_themes() -> dict:
         """The approved theme hierarchy and target list, with descriptions, for use as search filters."""
-        return library.list_themes(conn)
+        with db_lock:
+            return library.list_themes(conn)
 
     @server.tool()
     def set_favorite(passage_id: int, favorite: bool = True) -> dict:
         """Mark or unmark a passage as one of the user's favorites."""
         try:
-            return library.set_favorite(conn, passage_id, favorite)
+            with db_lock:
+                return library.set_favorite(conn, passage_id, favorite)
         except library.NotFound as exc:
             raise ToolError(str(exc)) from exc
 

@@ -65,3 +65,17 @@ def test_carlin_on_prompt_embeds_the_story(server):
     result = asyncio.run(server.get_prompt("carlin_on", {"news": "Airline adds a legroom fee"}))
     text = result.messages[0].content.text
     assert "Airline adds a legroom fee" in text and "verbatim" in text
+
+
+def test_parallel_tool_calls_share_the_connection_safely(server):
+    """Claude issues several searches at once; MCP runs each sync tool on its own worker thread."""
+    queries = ["storage unit stuff", "vote complain", "used car pre-owned vehicle", "joke about security"]
+
+    async def burst():
+        calls = [server.call_tool("search_passages", {"query": queries[i % 4]}) for i in range(96)]
+        calls += [server.call_tool("set_favorite", {"passage_id": 1, "favorite": i % 2 == 0}) for i in range(32)]
+        return await asyncio.gather(*calls, return_exceptions=True)
+
+    for _ in range(3):
+        failures = [r for r in asyncio.run(burst()) if isinstance(r, BaseException) or r.is_error]
+        assert failures == []
