@@ -1,6 +1,6 @@
 # Copyrighted source material and the derived database stay local
-corpus/
-data/
+/corpus/
+/data/
 
 # Implementation plans are working documents and stay local
 docs/superpowers/plans/
