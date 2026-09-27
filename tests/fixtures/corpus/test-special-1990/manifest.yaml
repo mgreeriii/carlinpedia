@@ -1,0 +1,9 @@
+title: "Test Special"
+kind: special
+recorded_on: 1990-02-17
+released_on: 1990-06-23
+venue: "Test Theater"
+source:
+  file: transcript.txt
+  provenance: "Original text written for the test suite, not a real transcript"
+  quality: verified

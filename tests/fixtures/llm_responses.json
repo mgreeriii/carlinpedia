@@ -1,0 +1,75 @@
+{
+  "segment_v1:test-special-1990": [{"bits": [
+    {"title": "Intro", "summary": "He greets the audience.", "unit_start": 0, "unit_end": 1,
+     "passages": [{"unit_start": 0, "unit_end": 1}]},
+    {"title": "Euphemisms", "summary": "Soft names hide ugly realities.", "unit_start": 2, "unit_end": 11,
+     "passages": [{"unit_start": 2, "unit_end": 5}, {"unit_start": 6, "unit_end": 8}, {"unit_start": 9, "unit_end": 11}]},
+    {"title": "Airport Rules", "summary": "Airport rules state the obvious.", "unit_start": 12, "unit_end": 17,
+     "passages": [{"unit_start": 12, "unit_end": 15}, {"unit_start": 16, "unit_end": 17}]},
+    {"title": "Stuff", "summary": "Life is a search for a place to keep your stuff.", "unit_start": 18, "unit_end": 21,
+     "passages": [{"unit_start": 18, "unit_end": 19}, {"unit_start": 20, "unit_end": 21}]},
+    {"title": "Outro", "summary": "He says good night.", "unit_start": 22, "unit_end": 22,
+     "passages": [{"unit_start": 22, "unit_end": 22}]}
+  ]}],
+  "segment_v1:test-album-1992": [{"bits": [
+    {"title": "Intro", "summary": "He starts a new thought.", "unit_start": 0, "unit_end": 0,
+     "passages": [{"unit_start": 0, "unit_end": 0}]},
+    {"title": "Pre-Owned", "summary": "Used cars got a nicer name.", "unit_start": 1, "unit_end": 4,
+     "passages": [{"unit_start": 1, "unit_end": 4}]},
+    {"title": "Voting", "summary": "Non-voters have the right to complain.", "unit_start": 5, "unit_end": 10,
+     "passages": [{"unit_start": 5, "unit_end": 7}, {"unit_start": 8, "unit_end": 10}]}
+  ]}],
+  "enrich_v1:test-special-1990:0": [{"passages": [
+    {"ordinal": 0, "thesis": "Performers thank the audience before the show begins.", "themes": [], "proposed_themes": [],
+     "targets": [], "proposed_targets": [], "tone": "observational", "profanity": false}
+  ]}],
+  "enrich_v1:test-special-1990:1": [{"passages": [
+    {"ordinal": 0, "thesis": "People rename things to make them sound better than they are.",
+     "themes": [{"slug": "language.euphemism", "weight": 0.9}, {"slug": "money.advertising-and-marketing", "weight": 0.4}],
+     "proposed_themes": [], "targets": ["advertisers-marketers"], "proposed_targets": [], "tone": "observational", "profanity": false},
+    {"ordinal": 1, "thesis": "Institutions inflate the names of unpleasant things until the reality disappears.",
+     "themes": [{"slug": "language.euphemism", "weight": 0.8}, {"slug": "language.jargon", "weight": 0.6}],
+     "proposed_themes": [], "targets": ["people"], "proposed_targets": [], "tone": "absurdist", "profanity": false},
+    {"ordinal": 2, "thesis": "Society renames poverty instead of fixing it.",
+     "themes": [{"slug": "language.euphemism", "weight": 0.7}, {"slug": "power.owners-and-class", "weight": 0.6}],
+     "proposed_themes": [], "targets": ["americans"], "proposed_targets": [], "tone": "rant", "profanity": false}
+  ]}],
+  "enrich_v1:test-special-1990:2": [{"passages": [
+    {"ordinal": 0, "thesis": "Official rules state the obvious and treat everyone as a suspect.",
+     "themes": [{"slug": "everyday.travel-and-airlines", "weight": 0.9}, {"slug": "power.government-control", "weight": 0.4}],
+     "proposed_themes": [], "targets": ["people"], "proposed_targets": [], "tone": "observational", "profanity": false},
+    {"ordinal": 1, "thesis": "Security measures are a performance of safety rather than safety itself.",
+     "themes": [{"slug": "human-nature.fear-and-safety", "weight": 0.8}, {"slug": "power.government-control", "weight": 0.6}],
+     "proposed_themes": [{"name": "Security theater", "description": "Visible safety rituals that make no one safer."}],
+     "targets": [], "proposed_targets": [], "tone": "rant", "profanity": false}
+  ]}],
+  "enrich_v1:test-special-1990:3": [{"passages": [
+    {"ordinal": 0, "thesis": "People value their own possessions and look down on everyone else's.",
+     "themes": [{"slug": "money.stuff", "weight": 0.9}, {"slug": "human-nature.selfishness", "weight": 0.4}],
+     "proposed_themes": [], "targets": ["people"], "proposed_targets": [], "tone": "observational", "profanity": false},
+    {"ordinal": 1, "thesis": "Consumer life is an endless cycle of buying more things and finding room for them.",
+     "themes": [{"slug": "money.stuff", "weight": 0.9}, {"slug": "money.consumerism", "weight": 0.8}],
+     "proposed_themes": [], "targets": ["americans"], "proposed_targets": [], "tone": "observational", "profanity": false}
+  ]}],
+  "enrich_v1:test-special-1990:4": [{"passages": [
+    {"ordinal": 0, "thesis": "Performers thank the audience at the end of the show.", "themes": [], "proposed_themes": [],
+     "targets": [], "proposed_targets": [], "tone": "observational", "profanity": false}
+  ]}],
+  "enrich_v1:test-album-1992:0": [{"passages": [
+    {"ordinal": 0, "thesis": "The performer introduces a new thought.", "themes": [], "proposed_themes": [],
+     "targets": [], "proposed_targets": [], "tone": "observational", "profanity": false}
+  ]}],
+  "enrich_v1:test-album-1992:1": [{"passages": [
+    {"ordinal": 0, "thesis": "People rename things to make them sound better than they are.",
+     "themes": [{"slug": "language.euphemism", "weight": 0.9}],
+     "proposed_themes": [], "targets": ["advertisers-marketers"], "proposed_targets": [], "tone": "observational", "profanity": false}
+  ]}],
+  "enrich_v1:test-album-1992:2": [{"passages": [
+    {"ordinal": 0, "thesis": "Voting is a ritual that gives people the illusion of choice.",
+     "themes": [{"slug": "power.voting-and-democracy", "weight": 0.9}],
+     "proposed_themes": [], "targets": ["politicians"], "proposed_targets": [], "tone": "rant", "profanity": false},
+    {"ordinal": 1, "thesis": "People who vote own the results more than people who abstain.",
+     "themes": [{"slug": "power.voting-and-democracy", "weight": 0.9}, {"slug": "power.politicians", "weight": 0.6}],
+     "proposed_themes": [], "targets": ["politicians", "americans"], "proposed_targets": [], "tone": "rant", "profanity": false}
+  ]}]
+}

@@ -1,0 +1,22 @@
+# Carlinpedia runtime configuration. Paths are relative to this file.
+
+[paths]
+db = "data/carlin.db"
+corpus = "corpus"
+vocab = "vocab"
+
+[ingest]
+model = "claude-sonnet-5"
+max_passage_units = 40
+# USD per million tokens, used only by `carlin ingest --dry-run`
+price_in_per_mtok = 2.0
+price_out_per_mtok = 10.0
+
+[embedding]
+model = "BAAI/bge-base-en-v1.5"
+dim = 768
+
+[search]
+rrf_k = 60
+retriever_depth = 50
+dedup_threshold = 0.92

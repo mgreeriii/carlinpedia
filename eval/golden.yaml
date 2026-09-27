@@ -1,0 +1,13 @@
+# Golden set for `carlin eval`. After your first ingest, replace these with about 20 real items.
+# Each expect_bits entry matches any bit whose title contains that text, ignoring case.
+# Check real bit titles with `carlin review works <slug>`.
+- news: "Pentagon renames layoffs a 'workforce realignment'"
+  queries:
+    - "institutions rename unpleasant things to hide what they are"
+    - "soft language euphemism"
+  expect_bits: ["Euphemism"]
+- news: "Airline adds a 'comfort fee' for standard legroom"
+  queries:
+    - "companies disguise price increases with pleasant names"
+    - "airline rules and announcements"
+  expect_bits: ["Euphemism", "Airline"]

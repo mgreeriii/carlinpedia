@@ -1,0 +1,80 @@
+# Controlled theme hierarchy. Edit freely before the first ingest.
+# Slugs are stable identifiers: changing one orphans its old links.
+- slug: language
+  name: Language
+  description: How words are used to hide, soften, inflate, or sell.
+  children:
+    - {slug: language.euphemism, name: Euphemism, description: Pleasant words substituted for blunt ones to avoid facing reality.}
+    - {slug: language.soft-language, name: Soft language, description: Language drained of feeling so that pain and consequence disappear.}
+    - {slug: language.jargon, name: Jargon and bureaucratese, description: Inflated institutional language that sounds important and says little.}
+    - {slug: language.political-correctness, name: Political correctness, description: Policing words in place of addressing the thing the words describe.}
+    - {slug: language.cliches, name: Clichés and empty phrases, description: Stock phrases people repeat without thinking about what they mean.}
+    - {slug: language.advertising-language, name: Advertising language, description: The vocabulary of selling, where every product is new, improved, and essential.}
+- slug: power
+  name: Power and politics
+  description: Who runs things, how they keep control, and the people who go along.
+  children:
+    - {slug: power.politicians, name: Politicians, description: Elected officials as a reflection of the people who elect them.}
+    - {slug: power.owners-and-class, name: The owners and class, description: The wealthy few who own the country and the system that serves them.}
+    - {slug: power.voting-and-democracy, name: Voting and democracy, description: Elections as a ritual that gives the illusion of choice.}
+    - {slug: power.patriotism, name: Patriotism and flag-waving, description: National pride as a substitute for thought.}
+    - {slug: power.war-and-militarism, name: War and militarism, description: The national love of war, weapons, and bombing people.}
+    - {slug: power.government-control, name: Government control, description: Authorities expanding control in the name of safety or order.}
+- slug: money
+  name: Money and consumption
+  description: Buying, owning, and the economy of wanting more.
+  children:
+    - {slug: money.consumerism, name: Consumerism, description: Shopping as identity, purpose, and pastime.}
+    - {slug: money.stuff, name: Stuff and possessions, description: People's attachment to their things and the need for places to keep them.}
+    - {slug: money.corporate-greed, name: Corporate greed, description: Companies putting profit above people, safety, and honesty.}
+    - {slug: money.advertising-and-marketing, name: Advertising and marketing, description: The industry that manufactures desire and sells it back.}
+    - {slug: money.american-dream, name: The American Dream, description: The promise of prosperity used to keep people working and quiet.}
+- slug: belief
+  name: Belief
+  description: Religion, faith, and the stories people tell to feel safe.
+  children:
+    - {slug: belief.organized-religion, name: Organized religion, description: Churches as institutions of money, power, and control.}
+    - {slug: belief.god, name: God, description: The idea of an all-powerful being and the contradictions around it.}
+    - {slug: belief.superstition, name: Superstition and magical thinking, description: Belief in luck, signs, and forces that don't exist.}
+    - {slug: belief.prayer, name: Prayer, description: Asking an invisible being to change its plans on your behalf.}
+- slug: society
+  name: Society
+  description: The institutions and customs people live inside.
+  children:
+    - {slug: society.conformity, name: Conformity, description: People doing what everyone else does and calling it a choice.}
+    - {slug: society.rights-and-freedoms, name: Rights and freedoms, description: Rights as privileges that can be revoked, and freedoms people give away.}
+    - {slug: society.law-and-order, name: Law and order, description: Police, prisons, and punishment as solutions to everything.}
+    - {slug: society.education, name: Education and schooling, description: Schools that train obedience rather than critical thinking.}
+    - {slug: society.children-and-parenting, name: Children and parenting, description: Over-scheduled, over-protected children and the parents who worship them.}
+    - {slug: society.family, name: Family, description: The family as an institution and its sacred status.}
+    - {slug: society.sports, name: Sports, description: Games, fans, and the language and values of competition.}
+    - {slug: society.celebrity, name: Celebrity, description: The worship of famous people for being famous.}
+    - {slug: society.media-and-news, name: Media and news, description: News as entertainment and the manufacture of fear and outrage.}
+- slug: human-nature
+  name: Human nature
+  description: Durable features of how people think and behave.
+  children:
+    - {slug: human-nature.hypocrisy, name: Hypocrisy, description: Saying one thing and doing another, publicly and without shame.}
+    - {slug: human-nature.self-deception, name: Self-deception, description: The lies people tell themselves to stay comfortable.}
+    - {slug: human-nature.stupidity, name: Stupidity, description: The sheer number of people who don't think, and what that costs.}
+    - {slug: human-nature.fear-and-safety, name: Fear and safety obsession, description: A culture terrified of germs, risk, and anything unfamiliar.}
+    - {slug: human-nature.selfishness, name: Selfishness, description: Everyone looking out for themselves and calling it virtue.}
+    - {slug: human-nature.violence, name: Violence, description: The human appetite for cruelty and destruction.}
+    - {slug: human-nature.arrogance, name: Human arrogance, description: The belief that humans are special, central, or in charge of the planet.}
+- slug: planet
+  name: Planet and mortality
+  description: Nature, the body, and the end of things.
+  children:
+    - {slug: planet.environment, name: The environment, description: The planet will be fine; the people are the ones in trouble.}
+    - {slug: planet.death, name: Death, description: Mortality and the rituals and denials around it.}
+    - {slug: planet.body-and-disease, name: Disease and the body, description: Illness, germs, bodily functions, and the fragile human machine.}
+- slug: everyday
+  name: Everyday absurdity
+  description: The small daily madness of modern life.
+  children:
+    - {slug: everyday.travel-and-airlines, name: Travel and airlines, description: Airports, airlines, and their strange announcements and rules.}
+    - {slug: everyday.driving, name: Driving, description: Other drivers, traffic, and behavior behind the wheel.}
+    - {slug: everyday.food, name: Food, description: Eating, restaurants, and the language of menus.}
+    - {slug: everyday.pets-and-animals, name: Pets and animals, description: How people treat animals and what animals reveal about people.}
+    - {slug: everyday.modern-life-and-technology, name: Modern life and technology, description: Gadgets, convenience, and progress that makes life worse.}
+    - {slug: everyday.self-help, name: Health and the self-help industry, description: Gurus, fads, and the business of fixing people.}

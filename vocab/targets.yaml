@@ -1,0 +1,17 @@
+# Controlled list of what Carlin goes after. Edit freely before the first ingest.
+- {slug: politicians, name: Politicians, description: Elected officials and candidates.}
+- {slug: the-owners, name: Corporations and "the owners", description: Big business and the wealthy people who own it.}
+- {slug: advertisers-marketers, name: Advertisers and marketers, description: The people who sell things and the language they use.}
+- {slug: organized-religion, name: Organized religion, description: Churches, clergy, and religious institutions.}
+- {slug: news-media, name: The news media, description: Television news, newspapers, and the people who present them.}
+- {slug: military, name: The military, description: Armed forces, generals, and the culture of war.}
+- {slug: police-and-courts, name: Police and courts, description: Law enforcement, judges, and the justice system.}
+- {slug: lawyers, name: Lawyers, description: Attorneys and the legal profession.}
+- {slug: parents, name: Parents, description: Mothers and fathers, especially the overprotective kind.}
+- {slug: self-help-industry, name: The self-help industry, description: Gurus, motivational speakers, and wellness products.}
+- {slug: americans, name: Americans, description: The American public and its national habits.}
+- {slug: human-species, name: The human species, description: Humanity as a whole.}
+- {slug: people, name: '"People" in general', description: Ordinary people and their everyday behavior.}
+- {slug: conservatives, name: Conservatives, description: The political right.}
+- {slug: liberals, name: Liberals, description: The political left.}
+- {slug: himself, name: Himself, description: Carlin turning the joke on himself.}

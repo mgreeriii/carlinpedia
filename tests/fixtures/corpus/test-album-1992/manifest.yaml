@@ -1,0 +1,7 @@
+title: "Test Album"
+kind: album
+released_on: 1992-04-01
+source:
+  file: transcript.txt
+  provenance: "Original text written for the test suite, not a real transcript"
+  quality: verified
